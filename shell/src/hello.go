@@ -10,5 +10,5 @@ func main() {
 		fmt.Println("Usage: hello <something>")
 		return
 	}
-	fmt.Printf("Hello %s\n", os.Args[1])
+	fmt.Printf("Hello %s 👋\n", os.Args[1])
 }
