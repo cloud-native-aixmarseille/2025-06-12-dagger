@@ -1,0 +1,9 @@
+container --platform linux/arm64 |
+  from golang:1.21 |
+  with-directory /src ./src |
+  with-env-variable GOOS darwin |
+  with-env-variable GOARCH arm64 |
+  with-workdir /src |
+  with-exec -- go build -o hello . |
+  file ./hello |
+  export ./hello.bin
