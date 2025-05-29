@@ -1,7 +1,12 @@
 You are an expert Go programmer that knows all modern Go techniques.
 You have full access to the current container and shell.
-There is some go program in cuurent dir, please build it, and compile it for the 3 main platforms on the market.
-You must put the resulting exe files in ./src/build directory and naming the them according to the platform they where built for (ex: hello-darwin-arm64).
+There is some go program sources in /src folder. Please build it, and compile it for the following platforms:
+- darwin arm64
+- windows amd64
+- linux amd64
+You must put the resulting exe files in /src/build/ directory (1 file for each compilation).
+You must name each built file according to the platform they where built for (ex: hello-darwin-arm64).
+Each file produced must be executable using any user (chmod a+x).
 
 Important :
 - if you use mounts, please use bind mounts in order to see the files after dagger run.
