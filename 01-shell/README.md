@@ -12,3 +12,6 @@ container |
 
 ## realworld
 
+```shell
+dagger < ./instructions.dagger
+```
