@@ -1,0 +1,21 @@
+base=$(
+  container | from golang:1.21 |
+    with-mounted-directory /src ./src |
+    with-workdir /src
+)
+env=$(
+  env |
+    with-container-input 'base' $base 'a base container' |
+    with-container-output 'completed' 'a completed step'
+)
+work=$(
+  llm |
+    with-env $env |
+    with-prompt-file ./prompt.txt
+)
+$work |
+  env |
+  output "completed" |
+  as-container |
+  file ./build/hello-darwin-arm64 |
+  export ./build/hello-darwin-arm64
