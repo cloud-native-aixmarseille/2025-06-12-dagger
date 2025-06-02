@@ -19,10 +19,12 @@ import (
 	"dagger/meetup/internal/dagger"
 )
 
+// custom type i want to abstract
 type Meetup struct {
 	Source *dagger.Directory
 }
 
+// constructor set a default source path
 func New(
 	// +defaultPath="src"
 	source *dagger.Directory,
@@ -30,18 +32,30 @@ func New(
 	return &Meetup{Source: source}
 }
 
-func (m *Meetup) Build(ctx context.Context) *dagger.File {
+// base
+func (m *Meetup) Base(ctx context.Context) *dagger.Container {
+	return dag.Container().
+		From("golang:1.21").
+		WithDirectory("/src", m.Source).
+		WithWorkdir("/src")
+}
+
+// will run all Go tests
+func (m *Meetup) GoTests(ctx context.Context) *dagger.Container {
+	return m.Base(ctx).
+		WithExec([]string{"go", "test"})
+}
+
+// build will centralize all the different builds
+func (m *Meetup) BuildAll(ctx context.Context) *dagger.File {
 	ctr := m.BuildAppleSiliecon(ctx)
 	return ctr.File("/src/hello")
 }
 
-// compile hello program for apple silicon
+// compile the program for apple silicon
 func (m *Meetup) BuildAppleSiliecon(ctx context.Context) *dagger.Container {
-	return dag.Container().
-		From("golang:1.21").
-		WithDirectory("/src", m.Source).
+	return m.Base(ctx).
 		WithEnvVariable("GOOS", "darwin").
 		WithEnvVariable("GOARCH", "arm64").
-		WithWorkdir("/src").
 		WithExec([]string{"go", "build", "-o", "hello"})
 }
