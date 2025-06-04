@@ -16,8 +16,14 @@ package main
 
 import "context"
 
-type Coucou struct{}
+type Coucou struct {
+	Name string
+}
 
-func (m *Coucou) DitCoucou(ctx context.Context, name string) (string, error) {
-	return dag.Container().From("alpine:latest").WithExec([]string{"echo", "Coucou " + name + " ! 👋👋👋"}).Stdout(ctx)
+func New() *Coucou {
+	return &Coucou{Name: "le monde"}
+}
+
+func (m *Coucou) DitCoucou(ctx context.Context) (string, error) {
+	return dag.Container().From("alpine:latest").WithExec([]string{"echo", "Coucou " + m.Name + " ! 👋👋👋"}).Stdout(ctx)
 }
