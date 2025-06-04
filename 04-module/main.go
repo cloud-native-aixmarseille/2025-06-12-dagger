@@ -14,24 +14,10 @@
 
 package main
 
-import (
-	"context"
-	"dagger/coucou/internal/dagger"
-)
+import "context"
 
 type Coucou struct{}
 
-// Returns a container that echoes whatever string argument is provided
-func (m *Coucou) ContainerEcho(stringArg string) *dagger.Container {
-	return dag.Container().From("alpine:latest").WithExec([]string{"echo", stringArg})
-}
-
-// Returns lines that match a pattern in the files of the provided Directory
-func (m *Coucou) GrepDir(ctx context.Context, directoryArg *dagger.Directory, pattern string) (string, error) {
-	return dag.Container().
-		From("alpine:latest").
-		WithMountedDirectory("/mnt", directoryArg).
-		WithWorkdir("/mnt").
-		WithExec([]string{"grep", "-R", pattern, "."}).
-		Stdout(ctx)
+func (m *Coucou) DitCoucou(ctx context.Context, name string) (string, error) {
+	return dag.Container().From("alpine:latest").WithExec([]string{"echo", "Coucou " + name + " ! 👋👋👋"}).Stdout(ctx)
 }
