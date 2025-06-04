@@ -1,4 +1,4 @@
-module dagger/meetup
+module dagger/coucou
 
 go 1.24.3
 

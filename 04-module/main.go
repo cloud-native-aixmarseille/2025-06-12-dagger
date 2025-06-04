@@ -1,4 +1,4 @@
-// A generated module for Meetup functions
+// A generated module for Coucou functions
 //
 // This module has been generated via dagger init and serves as a reference to
 // basic module structure as you get started with Dagger.
@@ -16,18 +16,18 @@ package main
 
 import (
 	"context"
-	"dagger/meetup/internal/dagger"
+	"dagger/coucou/internal/dagger"
 )
 
-type Meetup struct{}
+type Coucou struct{}
 
 // Returns a container that echoes whatever string argument is provided
-func (m *Meetup) ContainerEcho(stringArg string) *dagger.Container {
+func (m *Coucou) ContainerEcho(stringArg string) *dagger.Container {
 	return dag.Container().From("alpine:latest").WithExec([]string{"echo", stringArg})
 }
 
 // Returns lines that match a pattern in the files of the provided Directory
-func (m *Meetup) GrepDir(ctx context.Context, directoryArg *dagger.Directory, pattern string) (string, error) {
+func (m *Coucou) GrepDir(ctx context.Context, directoryArg *dagger.Directory, pattern string) (string, error) {
 	return dag.Container().
 		From("alpine:latest").
 		WithMountedDirectory("/mnt", directoryArg).
