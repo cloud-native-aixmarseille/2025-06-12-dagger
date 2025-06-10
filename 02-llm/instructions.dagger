@@ -20,4 +20,4 @@ llm |
   output 'completed' |
   as-container |
   directory /src/build |
-  export ./local
+  export ./builds
