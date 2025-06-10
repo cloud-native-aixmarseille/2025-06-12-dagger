@@ -15,6 +15,5 @@ tasks:
     desc: 'Clean the project'
     cmds:
       - echo 'Cleaning...'
-      - rm builds/*
       - git checkout -- .
     silent: true
