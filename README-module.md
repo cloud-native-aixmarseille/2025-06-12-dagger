@@ -3,6 +3,7 @@
 ```shell
 dagger init --sdk=go --name meetup-go
 dagger develop --sdk=go
+code ./main.go
 ```
 
 ```golang

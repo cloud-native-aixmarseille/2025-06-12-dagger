@@ -3,6 +3,7 @@
 ```shell
 dagger init --sdk=go --name test
 dagger install ../04-module
+code .dagger/main.go
 ```
 
 ```golang
@@ -37,7 +38,7 @@ func (m *Test) RunGoBuild() *dagger.File {
 ```
 
 ```daggershell
-run-go-tests
+run-go-tests | stdout
 run-go-build | export ./builds/hello-darwin-arm64
 ```
 
