@@ -6,4 +6,4 @@ container --platform linux/arm64 |
   with-workdir /src |
   with-exec -- go build -o hello . |
   file ./hello |
-  export ./hello.bin
+  export ./builds/hello-darwin-arm64
