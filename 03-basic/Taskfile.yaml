@@ -1,0 +1,19 @@
+# Taskfile.yaml
+version: '3'
+
+vars:
+  # FOO: bar
+
+tasks:
+
+  default:
+    cmds:
+      - task --list-all | awk '{ print $2 }' | cut -d ':' -f 1 | grep -vE '^Available|default$' | fzf | xargs -L 1 task
+    silent: true
+
+  clean:
+    desc: 'Clean the project'
+    cmds:
+      - echo 'Cleaning...'
+      - rm builds/*
+    silent: true
