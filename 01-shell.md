@@ -10,9 +10,15 @@ container |
   contents
 ```
 
+```daggershell
+base=$(container | from alpine | with-exec apk add curl)
+$base | with-exec -- curl -4 ifconfig.me | stdout
+$base | terminal
+```
+
 ## realworld
 
 ```shell
 dagger < ./instructions.dagger
-./builds/hello-darwin-arm64 youyou
+./builds/hello-darwin-arm64 youou
 ```

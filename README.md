@@ -1,9 +1,9 @@
 # Dagger
 
-0. [base](README-basic-app.md)
-2. [shell](README-shell.md)
-3. [llm](README-llm.md)
-4. [basic](README-basic.md)
-5. [module](README-module.md)
-6. [use-module](README-use-module.md)
-7. [daggerverse](README-daggerverse.md)
+0. [base](00-base-app.md)
+2. [shell](01-shell.md)
+3. [llm](02-llm.md)
+4. [basic](03-basic.md)
+5. [module](04-module.md)
+6. [use-module](05-use-module.md)
+7. [daggerverse](06-daggerverse.md)
