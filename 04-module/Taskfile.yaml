@@ -15,5 +15,5 @@ tasks:
     desc: 'Clean the project'
     cmds:
       - echo 'Cleaning...'
-      - git checkout -- .
+      - git clean -df
     silent: true

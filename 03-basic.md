@@ -6,7 +6,7 @@ A basic example of a dagger CI can be found here :
 
 ```shell
 # dagger shell
-go-tests
+go-tests | stdout
 build-all | export builds/hello-darwin-arm64
 ./builds/hello-darwin-arm64 'daggernauts 🥋 ceinture blanche !'
 ```
