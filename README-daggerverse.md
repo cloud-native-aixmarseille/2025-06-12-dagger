@@ -1,20 +1,21 @@
 # using daggerverse
 
 ```shell
-dagger init --sdk=go --name meetup
+dagger init --sdk=go --name meetup-go
 dagger install github.com/sagikazarmark/daggerverse/go@v0.9.0
 ```
 
 ```golang
+// .dagger/main.go
 package main
 
 import (
 	"context"
-	"dagger/meetup/internal/dagger"
+	"dagger/meetup-go/internal/dagger"
 )
 
 // custom type i want to abstract
-type Meetup struct {
+type MeetupGo struct {
 	Source *dagger.Directory
 }
 
@@ -22,12 +23,12 @@ type Meetup struct {
 func New(
 	// +defaultPath="src"
 	source *dagger.Directory,
-) *Meetup {
-	return &Meetup{Source: source}
+) *MeetupGo {
+	return &MeetupGo{Source: source}
 }
 
 // base
-func (m *Meetup) GoBuildDarwinArm64(ctx context.Context) *dagger.File {
+func (m *MeetupGo) GoBuildDarwinArm64(ctx context.Context) *dagger.File {
 	return dag.Go().
 		WithSource(m.Source).
 		WithCgoDisabled().
@@ -41,4 +42,8 @@ dagger shell code :
 
 ```daggershell
 go-build-darwin-arm-64 | export builds/hello
+```
+
+```shell
+./builds/hello-darwin-arm64 'daggernauts 🥋 ceinture noire !'
 ```
