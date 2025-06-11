@@ -3,6 +3,7 @@
 ```shell
 dagger init --sdk=go --name meetup-go
 dagger install github.com/sagikazarmark/daggerverse/go@v0.9.0
+code .dagger/main.go
 ```
 
 ```golang
@@ -41,7 +42,7 @@ func (m *MeetupGo) GoBuildDarwinArm64(ctx context.Context) *dagger.File {
 dagger shell code :
 
 ```daggershell
-go-build-darwin-arm-64 | export builds/hello
+go-build-darwin-arm-64 | export ./builds/hello-darwin-arm64
 ```
 
 ```shell
