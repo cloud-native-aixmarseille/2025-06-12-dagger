@@ -11,31 +11,31 @@ code .dagger/main.go
 package main
 
 import (
-	"context"
-	"dagger/meetup-go/internal/dagger"
+  "context"
+  "dagger/meetup-go/internal/dagger"
 )
 
 // custom type i want to abstract
 type MeetupGo struct {
-	Source *dagger.Directory
+  Source *dagger.Directory
 }
 
 // constructor set a default source path
 func New(
-	// +defaultPath="src"
-	source *dagger.Directory,
+  // +defaultPath="src"
+  source *dagger.Directory,
 ) *MeetupGo {
-	return &MeetupGo{Source: source}
+  return &MeetupGo{Source: source}
 }
 
-// base
+// darwin - arm64
 func (m *MeetupGo) GoBuildDarwinArm64(ctx context.Context) *dagger.File {
-	return dag.Go().
-		WithSource(m.Source).
-		WithCgoDisabled().
-		WithEnvVariable("GOOS", "darwin").
-		WithEnvVariable("GOARCH", "arm64").
-		Build()
+  return dag.Go().
+    WithSource(m.Source).
+    WithCgoDisabled().
+    WithEnvVariable("GOOS", "darwin").
+    WithEnvVariable("GOARCH", "arm64").
+    Build()
 }
 ```
 

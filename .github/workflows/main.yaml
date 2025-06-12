@@ -1,0 +1,41 @@
+name: Main - Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run go tests (with dagger)
+        uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "v0.18.9"
+          verb: call
+          args: go-tests
+          workdir: 06-daggerverse
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+      - name: Run end-to-end tests (with dagger)
+        uses: dagger/dagger-for-github@8.0.0
+        with:
+          version: "v0.18.9"
+          verb: call
+          args: end-2-end
+          workdir: 06-daggerverse
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
