@@ -43,6 +43,6 @@ func (m *MeetupGo) End2End(ctx context.Context) (string, error) {
 		From("alpine:latest").
 		WithFile("/app/hello", binary).
 		WithEntrypoint([]string{"/app/hello"}).
-		WithDefaultArgs([]string{"/app/hello", "world"}).
+		WithDefaultArgs([]string{"world"}).
 		WithExec([]string{}).Stdout(ctx)
 }
