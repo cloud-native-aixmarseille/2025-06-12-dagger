@@ -29,7 +29,7 @@ jobs:
           version: "v0.18.9"
           verb: call
           args: go-tests
-          workdir: 06-daggerverse
+          workdir: 07-using-ci
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
       - name: Run end-to-end tests (with dagger)
         uses: dagger/dagger-for-github@8.0.0
@@ -37,5 +37,5 @@ jobs:
           version: "v0.18.9"
           verb: call
           args: end-2-end
-          workdir: 06-daggerverse
+          workdir: 07-using-ci
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
